@@ -1,3 +1,6 @@
 Flask==2.3.3
+Flask-SQLAlchemy
+Werkzeug
+PyJWT
 requests
 reportlab
