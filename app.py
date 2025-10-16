@@ -18,7 +18,7 @@ import jwt
 # -------------------------
 app = Flask(__name__)
 # غيّر هذا المفتاح إلى قيمة قوية بخط الإنتاج
-app.secret_key = 'CHANGE_THIS_SECRET_KEY'
+app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -386,5 +386,6 @@ def logout():
 # تشغيل التطبيق
 # -------------------------
 if __name__ == '__main__':
-    # شغّل SSO على البورت الافتراضي 5000
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
