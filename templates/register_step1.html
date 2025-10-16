@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>إنشاء حساب - SSO</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+    <h1>SSO - إنشاء حساب</h1>
+</div>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        <h2>الخطوة 1: معلوماتك الشخصية</h2>
+
+        <label>الاسم كامل:</label>
+        <input type="text" name="full_name" required>
+
+        <label>رقم الهوية:</label>
+        <input type="text" name="national_id" required>
+
+        <label>تاريخ الميلاد:</label>
+        <input type="date" name="birth_date" required>
+
+        <label>الجنسية:</label>
+        <input type="text" name="nationality" required>
+
+        <label>الجنس:</label>
+        <select name="gender" required>
+            <option value="ذكر">ذكر</option>
+            <option value="انثى">انثى</option>
+        </select>
+
+        <label>المؤهل:</label>
+        <select name="qualification" required>
+            <option value="لا يدرس">لا يدرس</option>
+            <option value="ابتدائي">ابتدائي</option>
+            <option value="متوسط">متوسط</option>
+            <option value="ثانوي">ثانوي</option>
+            <option value="باكلوريس">باكلوريس</option>
+            <option value="ماجستير">ماجستير</option>
+            <option value="دكتوراه">دكتوراه</option>
+            <option value="بروفيسور">بروفيسور</option>
+        </select>
+
+        <label>مدينة الميلاد:</label>
+        <input type="text" name="birth_city" required>
+
+        <label>دولة الميلاد:</label>
+        <input type="text" name="birth_country" required>
+
+        <label>الحالة الاجتماعية:</label>
+        <select name="marital_status" required>
+            <option value="اعزب">اعزب</option>
+            <option value="متزوج">متزوج</option>
+        </select>
+
+        <label>فصيلة الدم:</label>
+        <input type="text" name="blood_type" required>
+
+        <label>رقم الجوال:</label>
+        <input type="text" name="phone_number" required>
+
+        <label>البريد الالكتروني:</label>
+        <input type="email" name="email" required>
+
+        <label>ارفق صورة شخصية:</label>
+        <input type="file" name="profile_image" accept="image/*" required>
+
+        <label>ارفق صورة ليدك:</label>
+        <input type="file" name="fingerprint_image" accept="image/*" required>
+
+        <button type="submit">التالي</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تعديل المعلومات</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+    <h1>SSO - تعديل المعلومات</h1>
+</div>
+
+<div class="container">
+    <form method="POST">
+        <h2>تعديل المعلومات المسموح بها</h2>
+
+        <label>الجنسية:</label>
+        <input type="text" name="nationality" value="{{ user.nationality }}" required>
+
+        <label>المؤهل:</label>
+        <select name="qualification" required>
+            <option value="لا يدرس" {% if user.qualification=='لا يدرس' %}selected{% endif %}>لا يدرس</option>
+            <option value="ابتدائي" {% if user.qualification=='ابتدائي' %}selected{% endif %}>ابتدائي</option>
+            <option value="متوسط" {% if user.qualification=='متوسط' %}selected{% endif %}>متوسط</option>
+            <option value="ثانوي" {% if user.qualification=='ثانوي' %}selected{% endif %}>ثانوي</option>
+            <option value="باكلوريس" {% if user.qualification=='باكلوريس' %}selected{% endif %}>باكلوريس</option>
+            <option value="ماجستير" {% if user.qualification=='ماجستير' %}selected{% endif %}>ماجستير</option>
+            <option value="دكتوراه" {% if user.qualification=='دكتوراه' %}selected{% endif %}>دكتوراه</option>
+            <option value="بروفيسور" {% if user.qualification=='بروفيسور' %}selected{% endif %}>بروفيسور</option>
+        </select>
+
+        <label>الحالة الاجتماعية:</label>
+        <select name="marital_status" required>
+            <option value="اعزب" {% if user.marital_status=='اعزب' %}selected{% endif %}>اعزب</option>
+            <option value="متزوج" {% if user.marital_status=='متزوج' %}selected{% endif %}>متزوج</option>
+        </select>
+
+        <label>رقم الجوال:</label>
+        <input type="text" name="phone_number" value="{{ user.phone_number }}" required>
+
+        <button type="submit">حفظ التغييرات</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}">رجوع للوحة التحكم</a>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>

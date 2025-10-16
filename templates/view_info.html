@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>معلوماتي</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+    <h1>SSO - معلوماتك الشخصية</h1>
+</div>
+
+<div class="container">
+    <ul>
+        <li>الاسم: {{ user.full_name }}</li>
+        <li>رقم الهوية: {{ user.national_id }}</li>
+        <li>تاريخ الميلاد: {{ user.birth_date.strftime('%Y-%m-%d') }}</li>
+        <li>الجنسية: {{ user.nationality }}</li>
+        <li>الجنس: {{ user.gender }}</li>
+        <li>المؤهل: {{ user.qualification }}</li>
+        <li>مدينة الميلاد: {{ user.birth_city }}</li>
+        <li>دولة الميلاد: {{ user.birth_country }}</li>
+        <li>الحالة الاجتماعية: {{ user.marital_status }}</li>
+        <li>فصيلة الدم: {{ user.blood_type }}</li>
+        <li>رقم الجوال: {{ user.phone_number }}</li>
+        <li>البريد الإلكتروني: {{ user.email }}</li>
+        <li>صورة المستخدم: <img src="{{ url_for('static', filename=user.profile_image.split('static/')[-1]) }}" width="80" height="80"></li>
+        <li>صورة البصمة: <img src="{{ url_for('static', filename=user.fingerprint_image.split('static/')[-1]) }}" width="80" height="80"></li>
+    </ul>
+    <a href="{{ url_for('dashboard') }}">رجوع للوحة التحكم</a>
+</div>
+</body>
+</html>

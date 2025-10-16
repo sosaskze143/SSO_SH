@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تسجيل الدخول الموحد SSO</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>SSO - تسجيل الدخول الموحد</h1>
+    </div>
+
+    <div class="container">
+        <form method="POST">
+            <h2>تسجيل الدخول</h2>
+
+            <label>رقم الهوية:</label>
+            <input type="text" name="national_id" required>
+
+            <label>كلمة المرور:</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">تسجيل الدخول</button>
+
+            <p>لا تملك حساب؟ <a href="{{ url_for('register') }}">إنشاء حساب</a></p>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
